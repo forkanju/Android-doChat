@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.RegisterActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/reg_img_bg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_170sdp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/login_bg" />
+
+            <EditText
+                android:id="@+id/reg_email_edt_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reg_img_bg"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/_17sdp"
+                android:layout_marginRight="@dimen/_17sdp"
+                android:background="@drawable/inputs"
+                android:drawableEnd="@drawable/ic_mail_black"
+                android:fontFamily="@font/josefin_sans_regular"
+                android:hint="Enter your eimail"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_8sdp" />
+
+            <EditText
+                android:id="@+id/reg_pass_edt_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reg_email_edt_txt"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/_17sdp"
+                android:layout_marginTop="@dimen/_17sdp"
+                android:layout_marginRight="@dimen/_17sdp"
+                android:background="@drawable/inputs"
+                android:fontFamily="@font/josefin_sans_regular"
+                android:hint="Enter your password"
+                android:drawableEnd="@drawable/ic_password_black"
+                android:inputType="textPassword"
+                android:padding="@dimen/_8sdp" />
+
+            <Button
+                android:id="@+id/reg_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reg_pass_edt_text"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="@dimen/_32sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_32sdp"
+                android:background="@drawable/buttons"
+                android:elevation="@dimen/_8sdp"
+                android:fontFamily="@font/josefin_sans_semibold"
+                android:padding="@dimen/_5sdp"
+                android:text="Create Account"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:tint="@android:color/white" />
+
+
+            <TextView
+                android:id="@+id/allready_acc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reg_btn"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:fontFamily="@font/josefin_sans_semibold"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="allready have an Account?"
+                android:textColor="#434141"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/login_here_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/allready_acc"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:fontFamily="@font/josefin_sans_semibold"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Login Here"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
+

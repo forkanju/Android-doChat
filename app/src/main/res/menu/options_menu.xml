@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home_find_peoples"
+        android:title="Find Peoples"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/home_settings"
+        android:title="Settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/home_sign_out"
+        android:title="Sign Out!"
+        app:showAsAction="never" />
+
+
+</menu>

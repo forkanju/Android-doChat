@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".activities.LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/login_img_bg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_170sdp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/login_bg" />
+
+            <EditText
+                android:id="@+id/login_email_edt_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_img_bg"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/_17sdp"
+                android:layout_marginRight="@dimen/_17sdp"
+                android:background="@drawable/inputs"
+                android:drawableEnd="@drawable/ic_mail_black"
+                android:fontFamily="@font/josefin_sans_regular"
+                android:hint="Enter your eimail"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_8sdp" />
+
+            <EditText
+                android:id="@+id/login_pass_edt_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_email_edt_txt"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/_17sdp"
+                android:layout_marginTop="@dimen/_17sdp"
+                android:layout_marginRight="@dimen/_17sdp"
+                android:background="@drawable/inputs"
+                android:drawableEnd="@drawable/ic_password_black"
+                android:fontFamily="@font/josefin_sans_regular"
+                android:hint="Enter your password"
+                android:inputType="textPassword"
+                android:padding="@dimen/_8sdp" />
+
+            <TextView
+                android:id="@+id/forgot_pass_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_pass_edt_txt"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_14sdp"
+                android:fontFamily="@font/josefin_sans_semibold"
+                android:padding="@dimen/_5sdp"
+                android:text="forgot Password ?"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/forgot_pass_text"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="@dimen/_32sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_32sdp"
+                android:background="@drawable/buttons"
+                android:elevation="@dimen/_8sdp"
+                android:fontFamily="@font/josefin_sans_semibold"
+                android:padding="@dimen/_5sdp"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:tint="@android:color/white" />
+
+            <TextView
+                android:id="@+id/create_account_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_btn"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/josefin_sans_semibold"
+                android:padding="@dimen/_5sdp"
+                android:text="create an Account?"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/lin_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/create_account_text"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:background="#434141" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/josefin_sans_regular"
+                    android:text="OR CONNECT WITH"
+                    android:textColor="#434141"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_30sdp"
+                    android:background="#434141" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lin_layout"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/phone_login"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_32sdp"
+                    android:background="@drawable/phone_login_bg"
+                    android:drawableStart="@drawable/ic_phone_black"
+                    android:drawableTint="#FFF"
+                    android:fontFamily="@font/josefin_sans_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/_6sdp"
+                    android:text="MOBILE"
+                    android:textColor="#FFFFFF"
+                    android:textSize="@dimen/_12sdp" />
+
+                <Button
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_32sdp"
+                    android:background="@drawable/facebook_login_bg"
+                    android:drawableStart="@drawable/facebook"
+                    android:drawableTint="#FFF"
+                    android:fontFamily="@font/josefin_sans_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/_6sdp"
+                    android:text="FACEBOOK"
+                    android:textColor="#FFFFFF"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

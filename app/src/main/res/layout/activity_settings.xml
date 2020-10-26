@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SettingsActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_img"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:src="@drawable/profile"
+        app:civ_border_color="#9C27B0"
+        app:civ_border_width="@dimen/_2sdp" />
+
+    <EditText
+        android:id="@+id/set_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_img"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:background="@drawable/inputs"
+        android:drawableStart="@drawable/ic_account"
+        android:fontFamily="@font/josefin_sans_bold"
+        android:hint="username"
+        android:inputType="textMultiLine"
+        android:padding="@dimen/_10sdp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/set_user_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/set_user_name"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:background="@drawable/inputs"
+        android:drawableStart="@drawable/ic_edit"
+        android:fontFamily="@font/josefin_sans_regular"
+        android:hint="hey, i'm available now."
+        android:inputType="textMultiLine"
+        android:padding="@dimen/_10sdp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/update_settings_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/set_user_status"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:background="@drawable/buttons"
+        android:fontFamily="@font/josefin_sans_bold"
+        android:inputType="textMultiLine"
+        android:padding="@dimen/_5sdp"
+        android:text="Update"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/text_white"
+        android:textSize="18sp" />
+
+</RelativeLayout>
