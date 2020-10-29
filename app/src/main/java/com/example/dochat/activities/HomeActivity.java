@@ -1,18 +1,24 @@
 package com.example.dochat.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.dochat.R;
 import com.example.dochat.adapters.TabsAccessorAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -71,6 +77,10 @@ public class HomeActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.home_settings) {
             sendUser2SettingsActivity();
         }
+        if (item.getItemId() == R.id.home_create_group) {
+            request2CreateNewGroup();
+        }
+
         if (item.getItemId() == R.id.home_find_peoples) {
 
         }
@@ -98,7 +108,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if((dataSnapshot.child("name").exists())){
-                    Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(getApplicationContext(), "set your name on settings", Toast.LENGTH_SHORT).show();
                     //sendUser2SettingsActivity();
@@ -131,4 +141,48 @@ public class HomeActivity extends AppCompatActivity {
         mTabLayout = findViewById(R.id.main_tabs_layout);
         mTabLayout.setupWithViewPager(mViewPager);
     }
+
+    private void request2CreateNewGroup(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this, R.style.AlertDialog);
+        builder.setTitle("Create Group");
+
+        final EditText groupNameField = new EditText(HomeActivity.this);
+        groupNameField.setHint("Enter group name");
+        builder.setView(groupNameField);
+
+        builder.setPositiveButton("Create", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String groupName = groupNameField.getText().toString();
+                if(TextUtils.isEmpty(groupName)){
+                    Toast.makeText(getApplicationContext(),"Must need group name!",Toast.LENGTH_SHORT).show();
+                }else {
+                    createNewGroup(groupName);
+                }
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    private void createNewGroup(final String groupName){
+        mDBRef.child("Groups").child(groupName).setValue("")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),groupName+"Group is created.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
 }

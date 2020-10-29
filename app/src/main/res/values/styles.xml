@@ -12,5 +12,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AlertDialog" parent="Theme.AppCompat.Light.Dialog">
+
+    </style>
+
+
+
 
 </resources>

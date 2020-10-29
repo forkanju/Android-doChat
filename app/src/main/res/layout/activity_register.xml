@@ -34,7 +34,7 @@
                 android:background="@drawable/inputs"
                 android:drawableEnd="@drawable/ic_mail_black"
                 android:fontFamily="@font/josefin_sans_regular"
-                android:hint="Enter your eimail"
+                android:hint="Enter your email"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/_8sdp" />
 

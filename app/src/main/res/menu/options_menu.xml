@@ -7,10 +7,17 @@
         android:title="Find Peoples"
         app:showAsAction="never" />
 
+
+    <item
+        android:id="@+id/home_create_group"
+        android:title="Create Group"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/home_settings"
         android:title="Settings"
         app:showAsAction="never" />
+
 
     <item
         android:id="@+id/home_sign_out"

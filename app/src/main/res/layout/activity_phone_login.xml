@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text_white"
+    tools:context=".activities.PhoneLoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/login_img_bg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_170sdp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/login_bg" />
+
+
+            <EditText
+                android:id="@+id/phone_number_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_img_bg"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/_17sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_17sdp"
+                android:background="@drawable/inputs"
+                android:drawableEnd="@drawable/ic_phone"
+                android:text="+880"
+                android:fontFamily="@font/josefin_sans_regular"
+                android:inputType="phone"
+                android:padding="@dimen/_8sdp"
+                android:textSize="15sp" />
+
+
+            <EditText
+                android:id="@+id/verification_code_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_img_bg"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/_17sdp"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:layout_marginEnd="@dimen/_17sdp"
+                android:background="@drawable/inputs"
+                android:drawableEnd="@drawable/ic_password_black"
+                android:fontFamily="@font/josefin_sans_regular"
+                android:hint="   Please enter your verification code"
+                android:inputType="number"
+                android:padding="@dimen/_8sdp"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/send_verification_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/phone_number_input"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:background="@drawable/buttons"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:text="Send Verification   Code"
+                android:textAllCaps="false"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/_14sdp" />
+
+            <Button
+                android:id="@+id/verify_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/verification_code_input"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:background="@drawable/buttons"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:text="Submit Verification Code"
+                android:textAllCaps="false"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/_14sdp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

@@ -35,7 +35,7 @@
                 android:background="@drawable/inputs"
                 android:drawableEnd="@drawable/ic_mail_black"
                 android:fontFamily="@font/josefin_sans_regular"
-                android:hint="Enter your eimail"
+                android:hint="Enter your email"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/_8sdp" />
 
@@ -166,7 +166,7 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_32sdp"
                     android:background="@drawable/facebook_login_bg"
-                    android:drawableStart="@drawable/facebook"
+                    android:drawableStart="@drawable/fb"
                     android:drawableTint="#FFF"
                     android:fontFamily="@font/josefin_sans_regular"
                     android:gravity="center"
