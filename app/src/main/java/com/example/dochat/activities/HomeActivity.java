@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onStart();
         if (currentUser == null) {
             sendUser2LoginActivity();
-        }else {
+        } else {
             verifyUserExistance();
         }
     }
@@ -81,7 +81,8 @@ public class HomeActivity extends AppCompatActivity {
             request2CreateNewGroup();
         }
 
-        if (item.getItemId() == R.id.home_find_peoples) {
+        if (item.getItemId() == R.id.home_find_friends) {
+            send2FindFriendsActivity();
 
         }
         return true;
@@ -102,14 +103,14 @@ public class HomeActivity extends AppCompatActivity {
         finish();
     }
 
-    private void verifyUserExistance(){
+    private void verifyUserExistance() {
         String currentUid = mAuth.getCurrentUser().getUid();
         mDBRef.child("Users").child(currentUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if((dataSnapshot.child("name").exists())){
-                   // Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
-                }else {
+                if ((dataSnapshot.child("name").exists())) {
+                    // Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
+                } else {
                     Toast.makeText(getApplicationContext(), "set your name on settings", Toast.LENGTH_SHORT).show();
                     //sendUser2SettingsActivity();
                 }
@@ -124,7 +125,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private void initializeFields(){
+    private void initializeFields() {
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -142,7 +143,7 @@ public class HomeActivity extends AppCompatActivity {
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    private void request2CreateNewGroup(){
+    private void request2CreateNewGroup() {
         AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this, R.style.AlertDialog);
         builder.setTitle("Create Group");
 
@@ -154,9 +155,9 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String groupName = groupNameField.getText().toString();
-                if(TextUtils.isEmpty(groupName)){
-                    Toast.makeText(getApplicationContext(),"Must need group name!",Toast.LENGTH_SHORT).show();
-                }else {
+                if (TextUtils.isEmpty(groupName)) {
+                    Toast.makeText(getApplicationContext(), "Must need group name!", Toast.LENGTH_SHORT).show();
+                } else {
                     createNewGroup(groupName);
                 }
             }
@@ -172,16 +173,21 @@ public class HomeActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void createNewGroup(final String groupName){
+    private void createNewGroup(final String groupName) {
         mDBRef.child("Groups").child(groupName).setValue("")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),groupName+"Group is created.", Toast.LENGTH_SHORT).show();
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), groupName + "Group is created.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+    }
+
+    private void send2FindFriendsActivity() {
+        Intent findFriendsIntent = new Intent(HomeActivity.this, FindFriendsActivity.class);
+        startActivity(findFriendsIntent);
     }
 
 

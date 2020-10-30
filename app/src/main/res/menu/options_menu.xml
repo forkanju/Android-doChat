@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/home_find_peoples"
-        android:title="Find Peoples"
+        android:id="@+id/home_find_friends"
+        android:title="Find Friends"
         app:showAsAction="never" />
 
 

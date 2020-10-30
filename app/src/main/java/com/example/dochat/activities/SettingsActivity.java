@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.dochat.R;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -220,45 +221,89 @@ public class SettingsActivity extends AppCompatActivity {
                 mDialog.setCanceledOnTouchOutside(false);
                 mDialog.show();
 
+                /////////////////From Here//////////////
+
                 Uri resultUri = result.getUri();
-                StorageReference filePath = userProfileImageRef.child(currentUid + ".jpg");
+                final StorageReference filePath = userProfileImageRef.child(currentUid + ".jpg");
 
-                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                UploadTask uploadTask = filePath.putFile(resultUri);
+                Task<Uri> uriTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if (!task.isSuccessful()) {
+                            throw task.getException();
+                        }
+                        // Continue with the task to get the download URL
+                        return filePath.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(SettingsActivity.this, "Profile Image Uploaded Successfully!", Toast.LENGTH_SHORT).show();
+                            Uri downloadUri = task.getResult();
+                            Toast.makeText(SettingsActivity.this, "Successfully uploaded", Toast.LENGTH_SHORT).show();
+                            if (downloadUri != null) {
 
-
-//                            final String downloadedUrl = task.getResult().getStorage().getDownloadUrl().toString();
-                            String downloadedUrl = task.getResult().getDownloadUrl().toString();
-
-                            Log.d("DOWNLOAD_IMG_URL: ", downloadedUrl+"");
-
-                            mDBRef.child("Users").child(currentUid).child("image")
-                                    .setValue(downloadedUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(SettingsActivity.this,"Image save in database successfully", Toast.LENGTH_SHORT).show();
+                                String downloadUrl = downloadUri.toString(); //YOU WILL GET THE DOWNLOAD URL HERE !!!!
+                                mDBRef.child("Users").child(currentUid).child("image").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
                                         mDialog.dismiss();
+                                        if(!task.isSuccessful()){
+                                            String error=task.getException().toString();
+                                            Toast.makeText(SettingsActivity.this,"Error : "+error,Toast.LENGTH_LONG).show();
+                                        }else{
+
+                                        }
                                     }
-                                    else {
-                                        String message = task.getException().toString();
-                                        Toast.makeText(SettingsActivity.this, "Error: "+message, Toast.LENGTH_SHORT).show();
-                                        mDialog.dismiss();
-                                    }
-                                }
-                            });
+                                });
+                            }
 
                         } else {
-                            String message = task.getException().toString();
-                            Toast.makeText(SettingsActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
-                            Log.d("ERROR", ""+message);
+                            // Handle failures
+                            // ...
+                            Toast.makeText(SettingsActivity.this,"Error",Toast.LENGTH_LONG).show();
+                            mDialog.dismiss();
                         }
                     }
                 });
+
+//                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(SettingsActivity.this, "Profile Image Uploaded Successfully!", Toast.LENGTH_SHORT).show();
+//
+//
+//                          String downloadedUrl = task.getResult().getStorage().getDownloadUrl().toString();
+//                         // String downloadedUrl = task.getResult().getDownloadUrl().toString();
+//
+//                            Log.d("DOWNLOAD_IMG_URL: ", downloadedUrl+"");
+//
+//                            mDBRef.child("Users").child(currentUid).child("image")
+//                                    .setValue(downloadedUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<Void> task) {
+//
+//                                    if(task.isSuccessful()){
+//                                        Toast.makeText(SettingsActivity.this,"Image save in database successfully", Toast.LENGTH_SHORT).show();
+//                                        mDialog.dismiss();
+//                                    }
+//                                    else {
+//                                        String message = task.getException().toString();
+//                                        Toast.makeText(SettingsActivity.this, "Error: "+message, Toast.LENGTH_SHORT).show();
+//                                        mDialog.dismiss();
+//                                    }
+//                                }
+//                            });
+//
+//                        } else {
+//                            String message = task.getException().toString();
+//                            Toast.makeText(SettingsActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+//                            Log.d("ERROR", ""+message);
+//                        }
+//                    }
+//                });
 
 //            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
 //
