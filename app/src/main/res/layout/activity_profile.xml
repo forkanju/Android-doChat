@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ProfileActivity">
+
+
+    <FrameLayout
+        android:id="@+id/profile_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/cover_" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/visit_profile_img"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_100sdp"
+            android:src="@drawable/profile"
+            app:civ_border_color="#9C27B0"
+            app:civ_border_width="@dimen/_2sdp" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/visit_profile_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_frame"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/josefin_sans_bold"
+        android:gravity="center_horizontal"
+        android:text="Md Forkan"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/visit_profile_status"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/visit_profile_name"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:fontFamily="@font/josefin_sans_semibold"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="5dp"
+        android:text="Android developer at purple algorithm limited"
+        android:textSize="17sp" />
+
+    <Button
+        android:id="@+id/send_message_button"
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/visit_profile_status"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/buttons"
+        android:fontFamily="@font/josefin_sans_semibold"
+        android:text="Send Message"
+        android:textAllCaps="false"
+        android:textColor="@color/text_white"
+        android:textSize="18sp" />
+
+
+    <Button
+        android:id="@+id/cancel_request"
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/send_message_button"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/_32sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/phone_login_bg"
+        android:fontFamily="@font/josefin_sans_regular"
+        android:gravity="center"
+        android:padding="@dimen/_2sdp"
+        android:text="Cancel Request"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:visibility="invisible" />
+
+
+</RelativeLayout>

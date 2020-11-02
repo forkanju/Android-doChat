@@ -16,39 +16,39 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_profile_image"
-                android:layout_width="@dimen/_55sdp"
-                android:layout_height="@dimen/_55sdp"
-                android:src="@drawable/profile" >
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:src="@drawable/profile">
 
             </de.hdodenhof.circleimageview.CircleImageView>
 
             <ImageView
                 android:id="@+id/user_online_status"
-                android:layout_width="@dimen/_11sdp"
-                android:layout_height="@dimen/_11sdp"
+                android:layout_width="@dimen/_9sdp"
+                android:layout_height="@dimen/_9sdp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_19sdp"
-                android:layout_marginTop="@dimen/_21sdp"
+                android:layout_marginLeft="@dimen/_17sdp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:src="@drawable/online" />
 
         </FrameLayout>
 
 
         <LinearLayout
-            android:padding="@dimen/_2sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/_2sdp">
 
             <TextView
                 android:id="@+id/user_profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
                 android:layout_marginLeft="@dimen/_9sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:fontFamily="@font/josefin_sans_semibold"
                 android:text="Al Forkan"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/user_profile_status"
@@ -57,10 +57,40 @@
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:fontFamily="@font/josefin_sans_regular"
                 android:text="Android Developer "
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/request_accept_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:backgroundTint="#4CAF50"
+                    android:fontFamily="@font/josefin_sans_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Accept"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_white"
+                    android:visibility="invisible" />
 
+                <Button
+                    android:id="@+id/request_cancel_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:backgroundTint="#F44336"
+                    android:fontFamily="@font/josefin_sans_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_white"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
 
 
         </LinearLayout>

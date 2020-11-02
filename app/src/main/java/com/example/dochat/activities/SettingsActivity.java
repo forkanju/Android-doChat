@@ -116,11 +116,11 @@ public class SettingsActivity extends AppCompatActivity {
             mUserStatus.setError("Please set user status!");
             return;
         } else {
-            HashMap<String, String> profileMap = new HashMap<>();
+            HashMap<String, Object> profileMap = new HashMap<>();
             profileMap.put("uid", currentUid);
             profileMap.put("name", setUserName);
             profileMap.put("status", setStatus);
-            mDBRef.child("Users").child(currentUid).setValue(profileMap)
+            mDBRef.child("Users").child(currentUid).updateChildren(profileMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

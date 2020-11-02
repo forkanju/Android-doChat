@@ -98,9 +98,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private void sendUser2SettingsActivity() {
         Intent settingsIntent = new Intent(HomeActivity.this, SettingsActivity.class);
-        settingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
         startActivity(settingsIntent);
-        finish();
+    
     }
 
     private void verifyUserExistance() {
