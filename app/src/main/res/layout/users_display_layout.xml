@@ -75,7 +75,7 @@
                     android:text="Accept"
                     android:textAllCaps="false"
                     android:textColor="@color/text_white"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
 
                 <Button
                     android:id="@+id/request_cancel_button"
@@ -88,7 +88,7 @@
                     android:text="Cancel"
                     android:textAllCaps="false"
                     android:textColor="@color/text_white"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
 
             </LinearLayout>
 

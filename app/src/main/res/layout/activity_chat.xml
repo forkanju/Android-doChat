@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".activities.GroupChatActivity">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/private_users_chat_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/lin_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/input_private_chat"
+            android:layout_width="@dimen/_245sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:background="@drawable/input_text_bg"
+            android:hint=" Aa"
+            android:padding="@dimen/_7sdp" />
+
+        <ImageButton
+            android:id="@+id/private_chat_send_button"
+            android:layout_width="@dimen/_44sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/white"
+            android:padding="@dimen/_15sdp"
+            android:src="@drawable/ic_send"
+            android:tint="@color/colorPrimary" />
+
+    </LinearLayout>
+
+</RelativeLayout>
