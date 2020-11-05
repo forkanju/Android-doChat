@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -74,23 +75,46 @@ public class ContactsFragment extends Fragment {
                 userRef.child(userIds).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild("image")) {
 
-                            String profileName = snapshot.child("name").getValue().toString();
-                            String profileStatus = snapshot.child("status").getValue().toString();
-                            String profileImage = snapshot.child("image").getValue().toString();
+                        if(snapshot.exists()){
 
-                            holder.userName.setText(profileName);
-                            holder.userStatus.setText(profileStatus);
-                            Picasso.get().load(profileImage).into(holder.userImage);
 
-                        } else {
-                            String profileName = snapshot.child("name").getValue().toString();
-                            String profileStatus = snapshot.child("status").getValue().toString();
+                            if (snapshot.child("userState").hasChild("state")) {
 
-                            holder.userName.setText(profileName);
-                            holder.userStatus.setText(profileStatus);
+                                String state = snapshot.child("userState").child("state").getValue().toString();
+                                String date = snapshot.child("userState").child("date").getValue().toString();
+                                String time = snapshot.child("userState").child("time").getValue().toString();
 
+                                if (state.equals("online")) {
+                                    holder.onlineIcon.setVisibility(View.VISIBLE);
+                                }
+                                else if (state.equals("offline")) {
+                                    holder.onlineIcon.setVisibility(View.INVISIBLE);
+                                }
+
+
+                            } else {
+                                holder.onlineIcon.setVisibility(View.INVISIBLE);
+                            }
+
+                            if (snapshot.hasChild("image")) {
+
+                                String profileName = snapshot.child("name").getValue().toString();
+                                String profileStatus = snapshot.child("status").getValue().toString();
+                                String profileImage = snapshot.child("image").getValue().toString();
+
+                                holder.userName.setText(profileName);
+                                holder.userStatus.setText(profileStatus);
+                                Picasso.get().load(profileImage).into(holder.userImage);
+
+                            } else {
+                                String profileName = snapshot.child("name").getValue().toString();
+                                String profileStatus = snapshot.child("status").getValue().toString();
+
+                                holder.userName.setText(profileName);
+                                holder.userStatus.setText(profileStatus);
+
+                            }
                         }
                     }
 
@@ -122,6 +146,7 @@ public class ContactsFragment extends Fragment {
         TextView userName;
         TextView userStatus;
         CircleImageView userImage;
+        ImageView onlineIcon;
 
         public ContactsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -129,6 +154,7 @@ public class ContactsFragment extends Fragment {
             userName = itemView.findViewById(R.id.user_profile_name);
             userStatus = itemView.findViewById(R.id.user_profile_status);
             userImage = itemView.findViewById(R.id.user_profile_image);
+            onlineIcon = itemView.findViewById(R.id.user_online_status);
         }
     }
 

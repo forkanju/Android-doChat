@@ -22,11 +22,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
+    private DatabaseReference userRef;
 
     private ProgressDialog mProgressDialog;
 
@@ -79,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
         mProgressDialog = new ProgressDialog(this);
 
         createAccTxt = findViewById(R.id.create_account_text);
@@ -120,9 +125,26 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                send2HomeActivity();
-                                Toast.makeText(getApplicationContext(), "User Login successful", Toast.LENGTH_SHORT).show();
-                                mProgressDialog.dismiss();
+
+                                String currentUid = mAuth.getCurrentUser().getUid();
+                                String deviceToken = FirebaseInstanceId.getInstance().getToken();
+
+                                userRef.child(currentUid).child("device_token")
+                                        .setValue(deviceToken)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                if(task.isSuccessful()){
+
+                                                    send2HomeActivity();
+                                                    Toast.makeText(getApplicationContext(), "User Login successful", Toast.LENGTH_SHORT).show();
+                                                    mProgressDialog.dismiss();
+                                                }
+                                            }
+                                        });
+
+
                             } else {
                                 String message = task.getException().toString();
                                 Toast.makeText(getApplicationContext(), "User not found!", Toast.LENGTH_SHORT).show();

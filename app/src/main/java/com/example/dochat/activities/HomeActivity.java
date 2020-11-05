@@ -28,6 +28,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+
 public class HomeActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
@@ -35,9 +39,11 @@ public class HomeActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
     private TabsAccessorAdapter mTabsAccessorAdapter;
 
-    private FirebaseUser currentUser;
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDBRef;
+
+    private String currentUserId;
 
 
     @Override
@@ -52,13 +58,34 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if (currentUser == null) {
             sendUser2LoginActivity();
         } else {
+
+            updateUserStatus("online");
             verifyUserExistance();
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            updateUserStatus("offline");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            updateUserStatus("offline");
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,7 +97,12 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
+
+
         if (item.getItemId() == R.id.home_sign_out) {
+
+            updateUserStatus("offline");
+
             mAuth.signOut();
             sendUser2LoginActivity();
         }
@@ -100,7 +132,7 @@ public class HomeActivity extends AppCompatActivity {
         Intent settingsIntent = new Intent(HomeActivity.this, SettingsActivity.class);
 
         startActivity(settingsIntent);
-    
+
     }
 
     private void verifyUserExistance() {
@@ -128,7 +160,7 @@ public class HomeActivity extends AppCompatActivity {
     private void initializeFields() {
 
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
+
         mDBRef = FirebaseDatabase.getInstance().getReference();
 
         mToolbar = findViewById(R.id.second_page_toolbar);
@@ -190,5 +222,28 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(findFriendsIntent);
     }
 
+
+    private void updateUserStatus(String state) {
+        String saveCurrentTime;
+        String saveCurrentDate;
+
+        Calendar calendar = Calendar.getInstance();
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
+        saveCurrentTime = currentTime.format(calendar.getTime());
+
+        HashMap<String, Object> onlineStateMap = new HashMap<>();
+        onlineStateMap.put("time", saveCurrentTime);
+        onlineStateMap.put("date", saveCurrentDate);
+        onlineStateMap.put("state", state);
+
+        currentUserId = mAuth.getCurrentUser().getUid();
+
+        mDBRef.child("Users").child(currentUserId).child("userState")
+                .updateChildren(onlineStateMap);
+    }
 
 }

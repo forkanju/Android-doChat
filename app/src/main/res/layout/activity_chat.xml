@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="#ffffff"
     tools:context=".activities.GroupChatActivity">
 
-
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_above="@id/lin_layout"
         android:id="@+id/private_users_chat_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -20,23 +20,43 @@
         android:layout_marginBottom="@dimen/_8sdp"
         android:orientation="horizontal">
 
+        <ImageButton
+            android:id="@+id/send_file_button"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center"
+            android:background="@android:color/white"
+
+            android:src="@drawable/ic_attach_file"
+            android:tint="@color/colorPrimary" />
+
+        <ImageButton
+            android:id="@+id/send_image_button"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center"
+            android:background="@android:color/white"
+
+            android:src="@drawable/ic_image"
+            android:tint="@color/colorPrimary" />
+
         <EditText
             android:id="@+id/input_private_chat"
-            android:layout_width="@dimen/_245sdp"
+            android:layout_width="@dimen/_215sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_5sdp"
             android:background="@drawable/input_text_bg"
             android:hint=" Aa"
             android:padding="@dimen/_7sdp" />
 
         <ImageButton
             android:id="@+id/private_chat_send_button"
-            android:layout_width="@dimen/_44sdp"
+            android:layout_width="@dimen/_30sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@android:color/white"
-            android:padding="@dimen/_15sdp"
+            android:padding="@dimen/_10sdp"
             android:src="@drawable/ic_send"
             android:tint="@color/colorPrimary" />
 

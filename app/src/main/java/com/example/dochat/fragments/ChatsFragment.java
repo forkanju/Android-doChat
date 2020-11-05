@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dochat.R;
@@ -44,12 +45,9 @@ public class ChatsFragment extends Fragment {
     private String retImage = "default_image";
 
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
     }
@@ -97,11 +95,35 @@ public class ChatsFragment extends Fragment {
                                         Picasso.get().load(retImage).into(holder.profileImage);
                                     }
 
+
                                     final String retName = snapshot.child("name").getValue().toString();
                                     final String retStatus = snapshot.child("status").getValue().toString();
 
                                     holder.userName.setText(retName + "");
-                                    holder.userStatus.setText("Last Seen: " + "\n" + "Date " + "Time");
+
+
+                                    if (snapshot.child("userState").hasChild("state")) {
+
+                                        String state = snapshot.child("userState").child("state").getValue().toString();
+                                        String date = snapshot.child("userState").child("date").getValue().toString();
+                                        String time = snapshot.child("userState").child("time").getValue().toString();
+
+                                        if (state.equals("online")) {
+                                            holder.userStatus.setText("online");
+                                            holder.onlinIcon.setVisibility(View.VISIBLE);
+
+                                        }
+                                        else if (state.equals("offline")) {
+                                            holder.userStatus.setText("Last Seen: "+ date + " " + time);
+                                            holder.onlinIcon.setVisibility(View.INVISIBLE);
+                                        }
+
+
+                                    } else {
+                                        holder.userStatus.setText("offline");
+                                        holder.onlinIcon.setVisibility(View.INVISIBLE);
+                                    }
+
 
                                     holder.itemView.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -146,6 +168,7 @@ public class ChatsFragment extends Fragment {
         CircleImageView profileImage;
         TextView userName;
         TextView userStatus;
+        ImageView onlinIcon;
 
         public chatViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -153,6 +176,7 @@ public class ChatsFragment extends Fragment {
             profileImage = itemView.findViewById(R.id.user_profile_image);
             userName = itemView.findViewById(R.id.user_profile_name);
             userStatus = itemView.findViewById(R.id.user_profile_status);
+            onlinIcon = itemView.findViewById(R.id.user_online_status);
         }
     }
 }

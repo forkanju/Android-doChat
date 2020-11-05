@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText userEmail, userPass;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference mDBReference;
+    private DatabaseReference rootRef;
 
     private ProgressDialog mProgressDialog;
 
@@ -75,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void initializeFields() {
         //firebase initialization
         mAuth = FirebaseAuth.getInstance();
-        mDBReference = FirebaseDatabase.getInstance().getReference();
+        rootRef = FirebaseDatabase.getInstance().getReference();
         mProgressDialog = new ProgressDialog(this);
 
         loginHereTxt = findViewById(R.id.login_here_txt);
@@ -107,8 +108,15 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+
+                                String currentUid = mAuth.getCurrentUser().getUid();
+                                String deviceToken = FirebaseInstanceId.getInstance().getToken();
+
+                                rootRef.child("Users").child(currentUid).child("device_token")
+                                        .setValue(deviceToken);
+
                                 String currentUserID = mAuth.getCurrentUser().getUid();
-                                mDBReference.child("Users").child(currentUserID).setValue("");
+                                rootRef.child("Users").child(currentUserID).setValue("");
 
                                 Toast.makeText(getApplicationContext(), "Account created Successfully!", Toast.LENGTH_SHORT).show();
                                 mProgressDialog.dismiss();
