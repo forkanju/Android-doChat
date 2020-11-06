@@ -28,20 +28,22 @@
 
     <ImageView
         android:id="@+id/message_sender_image_view"
-        android:scaleType="centerCrop"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/_5sdp"
         android:layout_width="@dimen/_140sdp"
-        android:layout_height="@dimen/_140sdp"/>
+        android:layout_height="@dimen/_140sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:scaleType="centerCrop" />
 
 
     <ImageView
         android:id="@+id/message_receiver_image_view"
-        android:scaleType="centerCrop"
-        android:layout_alignParentStart="true"
-        android:layout_margin="@dimen/_5sdp"
         android:layout_width="@dimen/_140sdp"
-        android:layout_height="@dimen/_140sdp"/>
+        android:layout_height="@dimen/_140sdp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/sender_messages_text"

@@ -1,15 +1,24 @@
 package com.example.dochat.model;
 
 public class Messages {
-    private String from, message, type;
+    private String from, to, message, type;
+
 
     public Messages() {
     }
 
-    public Messages(String from, String message, String type) {
+    public Messages(String from, String to, String message, String type) {
         this.from = from;
         this.message = message;
         this.type = type;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
     }
 
     public String getFrom() {
